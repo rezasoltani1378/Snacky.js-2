@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Snacky.js Demo</title>
+  <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+  <header class="hero">
+    <h1>Snacky.js</h1>
+    <p class="subtitle">Zero-dependency, themeable, animated snackbar library</p>
+    <div class="btn-row">
+      <button class="btn primary" id="btn-basic">Show Basic</button>
+      <button class="btn" id="btn-success">Success</button>
+      <button class="btn" id="btn-warning">Warning</button>
+      <button class="btn" id="btn-error">Error</button>
+    </div>
+  </header>
+
+  <section class="panel">
+    <h2>Features</h2>
+    <div class="grid">
+      <button class="btn" id="btn-theme-dark">Theme: Dark</button>
+      <button class="btn" id="btn-theme-light">Theme: Light</button>
+      <button class="btn" id="btn-theme-glass">Theme: Glass</button>
+      <button class="btn" id="btn-custom-theme">Custom Theme</button>
+
+      <button class="btn" id="btn-actions">Actions</button>
+      <button class="btn" id="btn-long-text">Long Text + Expand</button>
+      <button class="btn" id="btn-custom-icon">Custom Icon</button>
+      <button class="btn" id="btn-progress">Progress Bar</button>
+
+      <button class="btn" id="btn-stack">Queue: Stack</button>
+      <button class="btn" id="btn-replace-oldest">Queue: Replace Oldest</button>
+      <button class="btn" id="btn-replace-all">Queue: Replace All</button>
+      <button class="btn" id="btn-collapse">Queue: Collapse</button>
+
+      <button class="btn" id="btn-rtl">RTL Direction</button>
+      <button class="btn" id="btn-position">Top Center</button>
+      <button class="btn" id="btn-sound">Sound</button>
+      <button class="btn" id="btn-vibrate">Vibrate</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>Snacky.js v1.2.0 Demo</span>
+  </footer>
+
+  <script src="snacky.js"></script>
+  <script>
+    // Basic
+    document.getElementById("btn-basic").onclick = () => {
+      snacky.show("Hello from Snacky!", { type: "info" });
+    };
+
+    // Types
+    document.getElementById("btn-success").onclick = () => {
+      snacky.show("Saved successfully!", { type: "success" });
+    };
+    document.getElementById("btn-warning").onclick = () => {
+      snacky.show("Low disk space warning.", { type: "warning" });
+    };
+    document.getElementById("btn-error").onclick = () => {
+      snacky.show("Something went wrong.", { type: "error" });
+    };
+
+    // Themes
+    document.getElementById("btn-theme-dark").onclick = () => {
+      snacky.show("Dark theme", { theme: "dark" });
+    };
+    document.getElementById("btn-theme-light").onclick = () => {
+      snacky.show("Light theme", { theme: "light" });
+    };
+    document.getElementById("btn-theme-glass").onclick = () => {
+      snacky.show("Glass theme", { theme: "glass" });
+    };
+    document.getElementById("btn-custom-theme").onclick = () => {
+      snacky.show("Custom theme override", {
+        customTheme: {
+          "--snacky-bg": "#1d2233",
+          "--snacky-text": "#f8f9ff",
+          "--snacky-muted": "#bfc8ff",
+          "--snacky-border": "rgba(255,255,255,0.15)",
+          "--snacky-shadow": "0 12px 30px rgba(0,0,0,0.45)"
+        }
+      });
+    };
+
+    // Actions
+    document.getElementById("btn-actions").onclick = () => {
+      snacky.show("File deleted", {
+        type: "warning",
+        actions: [
+          { label: "Undo", onClick: () => alert("Undo clicked") },
+          { label: "Dismiss", closeOnClick: true }
+        ]
+      });
+    };
+
+    // Long text + Expand
+    document.getElementById("btn-long-text").onclick = () => {
+      snacky.show("This is a long message that demonstrates multi-line wrapping and expandable content. Click the snackbar to toggle expansion.", {
+        maxLines: 2,
+        expandable: true
+      });
+    };
+
+    // Custom icon
+    document.getElementById("btn-custom-icon").onclick = () => {
+      snacky.show("Custom SVG icon", {
+        icon: {
+          svg: `<svg viewBox="0 0 24 24"><path d="M12 2L2 22h20z"/></svg>`,
+          ariaLabel: "Triangle"
+        }
+      });
+    };
+
+    // Progress
+    document.getElementById("btn-progress").onclick = () => {
+      snacky.show("Auto-hide progress bar", {
+        progressBar: "show",
+        duration: 5000
+      });
+    };
+
+    // Queue strategies
+    document.getElementById("btn-stack").onclick = () => {
+      snacky.show("Queue: Stack", { queueStrategy: "stack" });
+    };
+    document.getElementById("btn-replace-oldest").onclick = () => {
+      snacky.show("Queue: Replace Oldest", { queueStrategy: "replace-oldest" });
+    };
+    document.getElementById("btn-replace-all").onclick = () => {
+      snacky.show("Queue: Replace All", { queueStrategy: "replace-all" });
+    };
+    document.getElementById("btn-collapse").onclick = () => {
+      snacky.show("Queue: Collapse", { queueStrategy: "collapse" });
+    };
+
+    // RTL
+    document.getElementById("btn-rtl").onclick = () => {
+      snacky.show("RTL example message", { direction: "rtl" });
+    };
+
+    // Position
+    document.getElementById("btn-position").onclick = () => {
+      snacky.show("Top center position", { position: "topCenter" });
+    };
+
+    // Sound
+    document.getElementById("btn-sound").onclick = () => {
+      snacky.show("Sound effect", { soundEffect: true });
+    };
+
+    // Vibrate
+    document.getElementById("btn-vibrate").onclick = () => {
+      snacky.show("Vibration enabled", { vibrate: true });
+    };
+  </script>
+</body>
+</html>
