@@ -1,8 +1,4 @@
-# Sorry about that — here’s a clean, fixed README only
 
-Below is **just the README content**, isolated in a single code block, with **no mixed text**.
-
-```markdown
 # Snacky.js v2
 
 A lightweight, zero-dependency snackbar library with themes, actions, icons, and queue strategies.
@@ -26,9 +22,9 @@ pnpm add snacky.js@2
 import snacky from "snacky.js";
 
 snacky.show("Hello from Snacky!", { type: "success" });
-
+```
 ## React Usage
-jsx
+```jsx
 import snacky from "snacky.js";
 
 export default function App() {
@@ -38,6 +34,7 @@ export default function App() {
     </button>
   );
 }
+```
 
 ## Features
 - Theme presets + custom overrides
